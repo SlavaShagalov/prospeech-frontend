@@ -24,10 +24,3 @@ const RecordsPage = () => {
 }
 
 export default RecordsPage;
-
-// className={`bg-green-600 hover:bg-green-700 
-//                             text-white font-bold 
-//                             px-4 py-2 rounded 
-//                             cursor-pointer 
-//                             focus:outline-none focus:shadow-outline 
-//                             ${className}`}
