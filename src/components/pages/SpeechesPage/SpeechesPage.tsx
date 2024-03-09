@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import ReactPlayer from 'react-player'
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import LeftSidebar from "../../LeftSidebar/LeftSidebar";
 import FileUploadModal from "../../FileUploadModal";
 
-import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../state/store";
 import { getAsync } from "../../../state/audios/audiosSlice";
-import { Link } from "react-router-dom";
 
 const SpeechesPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,10 +40,11 @@ const SpeechesPage = () => {
                 <ul className="divide-y divide-gray-200">
                     {audios.map((audio) => (
                         <li key={audio.id} className="py-4">
-                            <audio controls>
+                            {/* <video controls>
                                 <source src={audio.url} type="audio/mpeg" />
                                 Your browser does not support the audio element.
-                            </audio>
+                            </video> */}
+                            <ReactPlayer url={audio.url} controls/>
                             <Link to={`/speeches/${audio.id}`} className="ml-2">
                                 {audio.title}
                             </Link>
