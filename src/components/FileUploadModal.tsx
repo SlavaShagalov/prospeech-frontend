@@ -1,4 +1,7 @@
 import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
+import { addAsync } from "../state/audios/audiosSlice";
 
 interface FileUploadModalProps {
     onClose: () => void;
@@ -8,6 +11,8 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File | null>(null);
 
+    const dispatch = useDispatch<AppDispatch>();
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFile(e.target.files[0]);
@@ -15,8 +20,10 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
     };
 
     const handleUpload = () => {
-        // Здесь можно реализовать отправку файла на сервер TODO
-        console.log('Uploading file:', file);
+        if (file) {
+            dispatch(addAsync(file));
+        }
+        setFile(null);
         onClose();
     };
 
