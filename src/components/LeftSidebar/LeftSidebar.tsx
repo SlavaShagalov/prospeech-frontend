@@ -33,8 +33,8 @@ const LeftSidebar = () => {
 
             <ul className="my-4">
                 {menuItems.map((item) => (
-                    <Link to={item.link}>
-                        <li key={item.name} className="hover:bg-gray-300 h-14 px-4 py-2 flex items-center">
+                    <Link key={item.name} to={item.link}>
+                        <li className="hover:bg-gray-300 h-14 px-4 py-2 flex items-center">
                             <img src={item.icon_link} alt={item.name} className="mr-7" />
                             {item.name}
                         </li>

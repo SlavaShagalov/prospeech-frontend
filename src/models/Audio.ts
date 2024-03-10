@@ -1,4 +1,4 @@
-type Audio = {
+interface Audio {
   id: bigint,
   user_id: bigint,
   title: string,

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Webcam from "react-webcam";
 
 import LeftSidebar from "../../LeftSidebar/LeftSidebar";
 import WebcamVideo from "../../WebcamVideo";

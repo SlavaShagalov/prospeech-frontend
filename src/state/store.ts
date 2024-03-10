@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import audiosReducer from "./audios/audiosSlice";
+import audioReducer from "./audio/audioSlice";
 
 export const store = configureStore({
   reducer: {
     audios: audiosReducer,
+    audio: audioReducer,
   },
 });
 

@@ -9,6 +9,8 @@ const videoConstraints = {
     height: { min: 480 },
 };
 
+// https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType
+
 const audioConstraints = {
     suppressLocalAudioPlayback: true,
     noiseSuppression: true,
@@ -23,9 +25,11 @@ const WebcamVideo: React.FC = () => {
 
     const handleStartCaptureClick = useCallback(() => {
         setCapturing(true);
-        mediaRecorderRef.current = new MediaRecorder(webcamRef.current!.stream!, {
+        mediaRecorderRef.current = new MediaRecorder(webcamRef.current!.stream!,
+            {
             mimeType: "video/webm"
-        });
+        }
+        );
         mediaRecorderRef.current.addEventListener(
             "dataavailable",
             handleDataAvailable
@@ -52,10 +56,10 @@ const WebcamVideo: React.FC = () => {
     const handleDownload = React.useCallback(async () => {
         if (recordedChunks.length) {
             const blob = new Blob(recordedChunks, {
-                type: "video/webm"
+                type: "video/mp4"
             });
             const formData = new FormData();
-            formData.append("file", blob, "new_speech.webm");
+            formData.append("file", blob, "new_speech.mp4");
 
             const requestOptions: RequestInit = {
                 method: "POST",

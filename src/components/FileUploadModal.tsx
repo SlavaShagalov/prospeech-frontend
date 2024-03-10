@@ -80,7 +80,7 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
                             Upload
                         </button>
                         <button
-                            className="bg-purple-400 hover:bg-purple-600 
+                            className="bg-violet-400 hover:bg-violet-600 
                                     w-full h-10 rounded-xl"
                             onClick={onClose}
                         >
