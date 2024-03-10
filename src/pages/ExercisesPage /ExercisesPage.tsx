@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
-
-import LeftSidebar from "../../LeftSidebar/LeftSidebar";
+import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 
 const ExercisesPage = () => {
     return (

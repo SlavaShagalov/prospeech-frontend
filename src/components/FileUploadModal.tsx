@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../state/store";
-import { addAsync } from "../state/audios/audiosSlice";
+import { AppDispatch, RootState } from "../services/state/store";
+import { addAsync } from "../services/state/audios/audiosSlice";
 
 interface FileUploadModalProps {
     onClose: () => void;

@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Audio from "../../models/Audio";
+
+import Audio from "./../../../models/Audio";
 
 interface AudioState {
   audio: Audio | null;

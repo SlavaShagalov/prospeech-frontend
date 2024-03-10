@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 
-import LeftSidebar from "../../LeftSidebar/LeftSidebar";
-import FileUploadModal from "../../FileUploadModal";
-
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../state/store";
-import { getAsync } from "../../../state/audio/audioSlice";
-import Audio from "./../../../models/Audio";
 import ReactPlayer from "react-player";
+
+import { AppDispatch, RootState } from "../../services/state/store";
+import { getAsync } from "../../services/state/audio/audioSlice";
+import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 
 const SpeechPage = () => {
     const { id } = useParams();
