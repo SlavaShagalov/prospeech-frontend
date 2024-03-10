@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../services/state/store";
 import { addAsync } from "../services/state/audios/audiosSlice";
+import UploadBtn from "./ui/buttons/UploadBtn";
 
 interface FileUploadModalProps {
     onClose: () => void;
@@ -59,13 +60,9 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
                                 : <div className="h-full flex flex-col items-center justify-center">
                                     <p className="text-gray-500 mb-2">Drag and drop file or</p>
                                     <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
-                                    <button
-                                        className="bg-gradient-to-br from-blue-300 to-purple-600 hover:from-blue-500 hover:to-purple-800 
-                                                    w-24 h-10 rounded-xl"
-                                        onClick={() => fileInputRef.current?.click()}
-                                    >
+                                    <UploadBtn className="h-10" onClick={() => fileInputRef.current?.click()}>
                                         Browse files
-                                    </button>
+                                    </UploadBtn>
                                 </div>
                             }
                         </div>

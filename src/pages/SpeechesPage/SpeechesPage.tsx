@@ -7,6 +7,7 @@ import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import Table from "../../components/Table";
 import FileUploadModal from "../../components/FileUploadModal";
 import { getAsync } from "../../services/state/audios/audiosSlice";
+import UploadBtn from "../../components/ui/buttons/UploadBtn";
 
 const SpeechesPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,11 +29,8 @@ const SpeechesPage = () => {
             <LeftSidebar></LeftSidebar>
             <div className="pt-6 px-8">
                 <h1 className="text-xl mb-4">Records</h1>
-                <button className="bg-gradient-to-br from-blue-300 to-purple-600 hover:from-blue-500 hover:to-purple-800 
-                                    w-24 h-10 mb-4 rounded-xl" onClick={openModal}>
-                    Upload
-                </button>
-                <Table data={audios}/>
+                <UploadBtn className="w-24 h-10 mb-4" onClick={openModal}>Upload</UploadBtn>
+                <Table data={audios} /> 
                 {isModalOpen && <FileUploadModal onClose={closeModal} />}
             </div>
         </div>

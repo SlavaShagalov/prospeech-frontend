@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
+import UploadBtn from "./ui/buttons/UploadBtn";
 
 const videoConstraints = {
     // aspectRatio: 0.6666666667,
@@ -15,7 +16,7 @@ const audioConstraints = {
     suppressLocalAudioPlayback: true,
     noiseSuppression: true,
     echoCancellation: true,
-  };
+};
 
 const WebcamVideo: React.FC = () => {
     const webcamRef = useRef<Webcam>(null);
@@ -27,8 +28,8 @@ const WebcamVideo: React.FC = () => {
         setCapturing(true);
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current!.stream!,
             {
-            mimeType: "video/webm"
-        }
+                mimeType: "video/webm"
+            }
         );
         mediaRecorderRef.current.addEventListener(
             "dataavailable",
@@ -86,24 +87,25 @@ const WebcamVideo: React.FC = () => {
     }, [recordedChunks]);
 
     return (
-        <>
+        <div className="flex flex-col items-center">
             <Webcam
                 width={640} height={480} videoConstraints={videoConstraints}
                 mirrored={true}
                 audioConstraints={audioConstraints}
-                audio={true} 
+                audio={true}
                 muted={true}
                 ref={webcamRef}
+                className="mb-4"
             />
             {capturing ? (
-                <button onClick={handleStopCaptureClick}>Stop Capture</button>
+                <UploadBtn className="w-32 h-10" onClick={handleStopCaptureClick}>Stop</UploadBtn>
             ) : (
-                <button onClick={handleStartCaptureClick}>Start Capture</button>
+                <UploadBtn className="w-32 h-10" onClick={handleStartCaptureClick}>Start</UploadBtn>
             )}
             {recordedChunks.length > 0 && (
-                <button onClick={handleDownload}>Send to server</button>
+                <UploadBtn className="mt-4 w-32 h-10" onClick={handleDownload}>Upload</UploadBtn>
             )}
-        </>
+        </div>
     );
 }
 
