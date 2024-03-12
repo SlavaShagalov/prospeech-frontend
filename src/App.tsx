@@ -1,22 +1,52 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import ProtectedRoute from './components/ProtectedRoute';
+import AuthProvider from './components/AuthProvider';
 
 import SpeechesPage from './pages/SpeechesPage/SpeechesPage';
 import SpeechPage from './pages/SpeechPage/SpeechPage';
 import PracticePage from './pages/PracticePage/PracticePage';
 import ExercisesPage from './pages/ExercisesPage /ExercisesPage';
+import SignInPage from './pages/SignInPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <ProtectedRoute><SpeechesPage /></ProtectedRoute>,
+  },
+  {
+    path: "/signin",
+    element: <SignInPage />,
+  },
+  {
+    path: "/practice",
+    element: <ProtectedRoute><PracticePage /></ProtectedRoute>,
+  },
+  {
+    path: "/speeches",
+    element: <ProtectedRoute><SpeechesPage /></ProtectedRoute>,
+  },
+  {
+    path: "/speeches/:id",
+    element: <ProtectedRoute><SpeechPage /></ProtectedRoute>,
+  },
+  {
+    path: "/exercises",
+    element: <ProtectedRoute><ExercisesPage /></ProtectedRoute>,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
+]);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/practice" element={<PracticePage />} />
-        <Route path="/speeches" element={<SpeechesPage />} />
-        <Route path="/exercises" element={<ExercisesPage />} />
-        <Route path="/speeches/:id" element={<SpeechPage />} />
-        <Route path="/" element={<SpeechesPage />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 

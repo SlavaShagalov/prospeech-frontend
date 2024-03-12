@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import UploadBtn from "../ui/buttons/UploadBtn";
+import { AppDispatch } from "../../services/state/store";
+import { useDispatch } from "react-redux";
+import { logoutAsync } from "../../services/state/user/userSlice";
 
 const menuItems = [
     {
@@ -19,6 +23,8 @@ const menuItems = [
 ];
 
 const LeftSidebar = () => {
+    const dispatch = useDispatch<AppDispatch>()
+
     return (
         <div className="bg-gray-200 w-56 h-full">
             <div className="pt-2 px-2 flex justify-between">
@@ -41,6 +47,10 @@ const LeftSidebar = () => {
                     </Link>
                 ))}
             </ul>
+
+            <div className="flex items-center justify-center">
+                <UploadBtn className="w-40" onClick={() => {dispatch(logoutAsync())}}>Logout</UploadBtn>
+            </div>
         </div>
     );
 }

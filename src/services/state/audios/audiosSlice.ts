@@ -4,26 +4,36 @@ import Audio from "./../../../models/Audio";
 
 interface AudiosState {
   audios: Audio[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 const initialState: AudiosState = {
   audios: [],
+  status: "idle",
+  error: null,
 };
 
 const audiosSlice = createSlice({
   name: "audios",
   initialState,
-  reducers: {
-    add: (state) => {
-      // state.audios.push();
-      console.log("ADD");
-    },
-    get: (state) => {
-      // state.audios.push();
-      console.log("GET");
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
+    builder
+      .addCase(getAsync.pending, (state) => {
+        state.status = "loading";
+        console.log("Pending audios");
+      })
+      .addCase(getAsync.fulfilled, (state, action: PayloadAction<Audio[]>) => {
+        state.audios = action.payload;
+        state.status = "succeeded";
+        console.log("Audios loaded");
+      })
+      .addCase(getAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message!;
+        console.log("Audios failed");
+      });
     builder
       .addCase(addAsync.pending, () => {
         console.log("Pending");
@@ -31,32 +41,19 @@ const audiosSlice = createSlice({
       .addCase(addAsync.fulfilled, (state, action: PayloadAction<any>) => {
         console.log("PAYLOAD", action.payload);
         state.audios = [...state.audios, action.payload];
-      })
-      .addCase(getAsync.pending, () => {
-        console.log("Pending");
-      })
-      .addCase(getAsync.fulfilled, (state, action: PayloadAction<Audio[]>) => {
-        state.audios = action.payload;
+        console.log("Audio added");
       });
   },
 });
 
-// function sleep(milliseconds: number) {
-//     const date = Date.now();
-//     let currentDate = null;
-//     do {
-//       currentDate = Date.now();
-//     } while (currentDate - date < milliseconds);
-//   }
-
 export const getAsync = createAsyncThunk("audios/getAsync", async () => {
+  console.log("Start loading audios...");
   const requestOptions: RequestInit = {
     method: "GET",
     credentials: "include",
   };
 
   try {
-    // sleep(5000);
     const response = await fetch(
       "http://127.0.0.1/api/v1/audios",
       requestOptions

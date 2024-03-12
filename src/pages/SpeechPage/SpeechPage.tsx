@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { useEffect } from "react";
+import {useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from "react-player";
@@ -16,7 +16,7 @@ const SpeechPage = () => {
 
     useEffect(() => {
         dispatch(getAsync(Number(id!)));
-    }, []);
+    }, [dispatch, id]);
 
     return (
         <div className="bg-white h-screen w-full flex">

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import WebcamVideo from "../../components/WebcamVideo";
 
