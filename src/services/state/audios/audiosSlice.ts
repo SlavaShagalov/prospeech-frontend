@@ -55,7 +55,7 @@ export const getAsync = createAsyncThunk("audios/getAsync", async () => {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1/api/v1/audios",
+      "/api/v1/audios",
       requestOptions
     );
     if (response.ok) {
@@ -83,7 +83,7 @@ export const addAsync = createAsyncThunk(
 
     try {
       const response = await fetch(
-        "http://127.0.0.1/api/v1/audios",
+        "/api/v1/audios",
         requestOptions
       );
       if (response.ok) {

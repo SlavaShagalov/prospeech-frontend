@@ -36,7 +36,7 @@ export const getAsync = createAsyncThunk(
     try {
       // sleep(5000);
       const response = await fetch(
-        `http://127.0.0.1/api/v1/audios/${id}`,
+        `/api/v1/audios/${id}`,
         requestOptions
       );
       if (response.ok) {

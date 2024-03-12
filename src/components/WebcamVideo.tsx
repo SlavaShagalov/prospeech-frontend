@@ -70,7 +70,7 @@ const WebcamVideo: React.FC = () => {
 
             try {
                 const response = await fetch(
-                    "http://127.0.0.1/api/v1/audios",
+                    "/api/v1/audios",
                     requestOptions
                 );
                 if (response.ok) {

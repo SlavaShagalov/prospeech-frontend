@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import User from "../../../models/User";
 
-const API_LOGIN_URL = "http://127.0.0.1/api/v1/auth/signin";
+const API_LOGIN_URL = "/api/v1/auth/signin";
 
 interface UserState {
   user: User | null;
@@ -89,7 +89,7 @@ export const getByTokenAsync = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `http://127.0.0.1/api/v1/auth/me`,
+        `/api/v1/auth/me`,
         requestOptions
       );
       if (response.ok) {
@@ -147,7 +147,7 @@ export const logoutAsync = createAsyncThunk("user/logoutAsync", async () => {
 
   try {
     const response = await fetch(
-      `http://127.0.0.1/api/v1/auth/logout`,
+      `/api/v1/auth/logout`,
       requestOptions
     );
     if (response.ok) {
