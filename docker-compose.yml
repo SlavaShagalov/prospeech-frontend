@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  dev-frontend:
+    image: node:19
+    container_name: ps_dev_frontend
+    working_dir: /code/
+    command: npm run start
+    volumes:
+      - ./:/code/
+    ports:
+      - "8100:8100"
+    networks:
+      - ps-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  ps-network:
+    name: ps_network
+    external: true
