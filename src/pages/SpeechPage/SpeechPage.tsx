@@ -119,7 +119,7 @@ const SpeechPage = () => {
                         <div className="">
                             <ReactPlayer url={audio?.url} controls />
                         </div>
-                        <div className="bg-gray-200 p-5 rounded-2xl">
+                        <div className="bg-gray-200 w-full p-5 rounded-2xl">
                             {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet ac velit et posuere. Nullam in euismod leo, a efficitur nunc. Suspendisse in pulvinar lectus. Duis ultrices nulla at consectetur imperdiet. Nunc fermentum elit sit amet tellus tincidunt fermentum. Suspendisse potenti. Nulla convallis sed libero vel cursus. Suspendisse tincidunt ante ut ligula fermentum bibendum. Quisque sed ante ut lorem laoreet luctus sit amet sed mauris. Proin imperdiet vel ex non lacinia.
                                 Fusce eu consectetur quam. Nam nec feugiat mi. Ut tincidunt efficitur erat, in consequat nulla finibus id. Aliquam erat volutpat. Aenean cursus arcu elit, nec ornare neque sollicitudin quis. Ut tempus nunc vitae nisl placerat, lobortis vehicula tortor suscipit. Mauris tincidunt viverra odio, et pellentesque ante feugiat et. Maecenas blandit augue non auctor accumsan. Donec venenatis blandit quam, et laoreet tellus pharetra nec. Quisque pharetra molestie enim vel scelerisque. Curabitur sollicitudin ut nunc sed aliquet. Pellentesque leo urna, mattis non lectus a, pellentesque suscipit elit. Fusce finibus vitae erat ultrices pharetra.</p> */}
                             <p>{audio?.text}</p>
