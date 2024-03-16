@@ -57,12 +57,15 @@ const SpeechPage = () => {
     };
 
     const onDownload = () => {
+        // const fileUrl = audio?.url;
+        // const link = document.createElement('a');
+        // link.href = fileUrl!;
+        // document.body.appendChild(link);
+        // link.click();
+        // document.body.removeChild(link);
+
         const fileUrl = audio?.url;
-        const link = document.createElement('a');
-        link.href = fileUrl!;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        window.open(fileUrl, '_blank');
     };
 
 
@@ -83,7 +86,7 @@ const SpeechPage = () => {
             };
 
             const response = await fetch(
-                `http://127.0.0.1/api/v1/audios/${id}`,
+                `/api/v1/audios/${id}`,
                 requestOptions
             );
             if (response.status === 200) {
