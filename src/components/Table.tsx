@@ -11,6 +11,7 @@ import {
 
 
 import Audio from "./../models/Audio";
+import { padZeros } from "../utils/format";
 
 const months = [
     "янв.",
@@ -41,7 +42,9 @@ const columns = [
             const day = date.getDate();
             const monthIndex = date.getMonth();
             const monthName = months[monthIndex];
-            const formattedDate = `${day} ${monthName}`;
+            const hours = padZeros(date.getHours());
+            const minutes = padZeros(date.getMinutes());
+            const formattedDate = `${day} ${monthName} ${hours}:${minutes}`;
             return formattedDate;
         },
     }),

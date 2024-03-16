@@ -19,8 +19,21 @@ const audioSlice = createSlice({
       .addCase(getAsync.pending, () => {
         console.log("Pending");
       })
-      .addCase(getAsync.fulfilled, (state, action: PayloadAction<Audio | undefined>) => {
-        state.audio = action.payload!;
+      .addCase(
+        getAsync.fulfilled,
+        (state, action: PayloadAction<Audio | undefined>) => {
+          state.audio = action.payload!;
+        }
+      );
+    builder
+      .addCase(deleteAsync.pending, () => {
+        console.log("Pending");
+      })
+      .addCase(deleteAsync.fulfilled, (state) => {
+        state.audio = null;
+      })
+      .addCase(deleteAsync.rejected, () => {
+        console.log("Delete FAILED");
       });
   },
 });
@@ -35,13 +48,32 @@ export const getAsync = createAsyncThunk(
 
     try {
       // sleep(5000);
-      const response = await fetch(
-        `/api/v1/audios/${id}`,
-        requestOptions
-      );
+      const response = await fetch(`/api/v1/audios/${id}`, requestOptions);
       if (response.ok) {
         const data: Audio = await response.json();
         return data;
+      } else {
+        console.error("Failed to fetch audio list");
+      }
+    } catch (error) {
+      console.error("Error fetching audio list:", error);
+    }
+  }
+);
+
+export const deleteAsync = createAsyncThunk(
+  "audio/deleteAsync",
+  async (id: number) => {
+    const requestOptions: RequestInit = {
+      method: "DELETE",
+      credentials: "include",
+    };
+
+    try {
+      // sleep(5000);
+      const response = await fetch(`/api/v1/audios/${id}`, requestOptions);
+      if (response.ok) {
+        return;
       } else {
         console.error("Failed to fetch audio list");
       }
