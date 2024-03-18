@@ -6,7 +6,7 @@ const PracticePage = () => {
         <div className="bg-white h-screen w-full flex">
             <LeftSidebar></LeftSidebar>
             <div className="w-full pt-6 px-8">
-                <h1 className="text-xl mb-4">Practice</h1>
+                <h1 className="text-xl mb-4">Практика</h1>
                 <div className="w-full flex items-center justify-center">
                     <WebcamVideo />
                 </div>

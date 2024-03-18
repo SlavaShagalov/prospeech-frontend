@@ -6,17 +6,17 @@ import { logoutAsync } from "../../services/state/user/userSlice";
 
 const menuItems = [
     {
-        name: "Practice",
+        name: "Практика",
         link: "/practice",
         icon_link: "/assets/man_speak.svg",
     },
     {
-        name: "Speeches",
+        name: "Выступления",
         link: "/speeches",
         icon_link: "/assets/save.svg",
     },
     {
-        name: "Exercises",
+        name: "Упражнения",
         link: "/exercises",
         icon_link: "/assets/exercise.svg",
     },
@@ -49,7 +49,7 @@ const LeftSidebar = () => {
             </ul>
 
             <div className="flex items-center justify-center">
-                <UploadBtn className="w-40" onClick={() => {dispatch(logoutAsync())}}>Logout</UploadBtn>
+                <UploadBtn className="w-40" onClick={() => {dispatch(logoutAsync())}}>Выйти</UploadBtn>
             </div>
         </div>
     );

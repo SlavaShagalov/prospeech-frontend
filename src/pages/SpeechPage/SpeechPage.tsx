@@ -114,7 +114,7 @@ const SpeechPage = () => {
                     </div>
                     <DropdownMenu onDelete={onDelete} onDownload={onDownload} />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-start">
                     <div className="px-6 w-2/3 py-4 flex flex-col gap-4 items-center justify-center">
                         <div className="">
                             <ReactPlayer url={audio?.url} controls />

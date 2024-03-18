@@ -98,12 +98,12 @@ const WebcamVideo: React.FC = () => {
                 className="mb-4"
             />
             {capturing ? (
-                <UploadBtn className="w-32 h-10" onClick={handleStopCaptureClick}>Stop</UploadBtn>
+                <UploadBtn className="w-32 h-10" onClick={handleStopCaptureClick}>Остановить</UploadBtn>
             ) : (
-                <UploadBtn className="w-32 h-10" onClick={handleStartCaptureClick}>Start</UploadBtn>
+                <UploadBtn className="w-32 h-10" onClick={handleStartCaptureClick}>Начать</UploadBtn>
             )}
             {recordedChunks.length > 0 && (
-                <UploadBtn className="mt-4 w-32 h-10" onClick={handleDownload}>Upload</UploadBtn>
+                <UploadBtn className="mt-4 w-32 h-10" onClick={handleDownload}>Загрузить</UploadBtn>
             )}
         </div>
     );

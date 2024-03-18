@@ -44,8 +44,8 @@ const SpeechesPage = () => {
         <div className="bg-white h-screen w-full flex">
             <LeftSidebar></LeftSidebar>
             <div className="pt-6 px-8">
-                <h1 className="text-xl mb-4">Records</h1>
-                <UploadBtn className="w-24 h-10 mb-4" onClick={openModal}>Upload</UploadBtn>
+                <h1 className="text-xl mb-4">Выступления</h1>
+                <UploadBtn className="h-10 mb-4" onClick={openModal}>Загрузить</UploadBtn>
                 {content}
                 {isModalOpen && <FileUploadModal onClose={closeModal} />}
             </div>

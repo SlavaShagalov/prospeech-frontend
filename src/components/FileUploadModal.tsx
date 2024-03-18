@@ -45,10 +45,10 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
                         <img src="/assets/close.svg" alt="Back" onClick={onClose} className="cursor-pointer" />
                     </div>
                     <div className="flex flex-col items-center space-y-2">
-                        <h2 className="text-lg font-medium">Upload your video or audio</h2>
+                        <h2 className="text-lg font-medium">Загрузите свое видео или аудио</h2>
                         <p className="text-center">
-                            Upload MP4 or WebM videos, or any type of audio file<br />
-                            Please limit file duration to no more than 2 hours
+                            Загрузите видео в формате MP4 или WebM или аудиофайл любого типа<br />
+                            Пожалуйста, ограничьте продолжительность файла не более чем 2 часами
                         </p>
                         <div
                             className={`w-full ${!file && "h-64"} border-dashed border-2 border-gray-400}`}
@@ -58,10 +58,10 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
                             {file
                                 ? <p>{file.name}</p>
                                 : <div className="h-full flex flex-col items-center justify-center">
-                                    <p className="text-gray-500 mb-2">Drag and drop file or</p>
+                                    <p className="text-gray-500 mb-2">Перетащите файл или</p>
                                     <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
                                     <UploadBtn className="h-10" onClick={() => fileInputRef.current?.click()}>
-                                        Browse files
+                                        Выбрать файл
                                     </UploadBtn>
                                 </div>
                             }
@@ -74,14 +74,14 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({ onClose }) => {
                             onClick={handleUpload}
                             disabled={!file}
                         >
-                            Upload
+                            Загрузить
                         </button>
                         <button
                             className="bg-violet-400 hover:bg-violet-600 
                                     w-full h-10 rounded-xl"
                             onClick={onClose}
                         >
-                            Close
+                            Отмена
                         </button>
                     </div>
                 </div>
