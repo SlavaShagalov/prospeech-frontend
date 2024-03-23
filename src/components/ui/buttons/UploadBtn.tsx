@@ -14,7 +14,7 @@ const UploadBtn: React.FC<{
         return (
             <button
                 className={`bg-gradient-to-br from-blue-300 to-purple-600 hover:from-blue-500 hover:to-purple-800 
-                            px-4 py-2 rounded-xl 
+                            px-4 py-2 text-white rounded-xl 
                             cursor-pointer 
                             focus:outline-none focus:shadow-outline 
                             ${className}`}

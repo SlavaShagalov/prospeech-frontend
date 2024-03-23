@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
@@ -57,23 +57,16 @@ const SpeechPage = () => {
     };
 
     const onDownload = () => {
-        // const fileUrl = audio?.url;
-        // const link = document.createElement('a');
-        // link.href = fileUrl!;
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
-
         const fileUrl = audio?.url;
-        window.open(fileUrl, '_blank');
+        const link = document.createElement('a');
+        link.href = fileUrl!;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
-
 
     const updateName = async (newName: any) => {
         try {
-            // await BoardService.updateName(id!, newName);
-            // setName(newName);
-
             const requestOptions: RequestInit = {
                 method: "PATCH",
                 credentials: "include",
@@ -117,7 +110,12 @@ const SpeechPage = () => {
                 <div className="flex justify-between items-start">
                     <div className="px-6 w-2/3 py-4 flex flex-col gap-4 items-center justify-center">
                         <div className="">
-                            <ReactPlayer url={audio?.url} controls />
+                            <ReactPlayer url={audio?.url} onProgress={(progress) => {
+                                console.log("loaded", progress.loaded);
+                                console.log("loadedSeconds", progress.loadedSeconds);
+                                console.log("played", progress.played);
+                                console.log("playedSeconds", progress.playedSeconds);
+                            }} controls />
                         </div>
                         <div className="bg-gray-200 w-full p-5 rounded-2xl">
                             {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet ac velit et posuere. Nullam in euismod leo, a efficitur nunc. Suspendisse in pulvinar lectus. Duis ultrices nulla at consectetur imperdiet. Nunc fermentum elit sit amet tellus tincidunt fermentum. Suspendisse potenti. Nulla convallis sed libero vel cursus. Suspendisse tincidunt ante ut ligula fermentum bibendum. Quisque sed ante ut lorem laoreet luctus sit amet sed mauris. Proin imperdiet vel ex non lacinia.
