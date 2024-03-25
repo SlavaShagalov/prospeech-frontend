@@ -11,6 +11,7 @@ import ExercisesPage from './pages/ExercisesPage /ExercisesPage';
 import SignInPage from './pages/SignInPage';
 import NotFoundPage from './pages/NotFoundPage';
 import ExercisePage from './pages/ExercisePage /ExercisePage';
+import FastAnalogPage from './pages/FastAnalogPage';
 
 const router = createBrowserRouter([
   {
@@ -38,8 +39,8 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><ExercisesPage /></ProtectedRoute>,
   },
   {
-    path: "/exercises/:slug",
-    element: <ProtectedRoute><ExercisePage /></ProtectedRoute>,
+    path: "/exercises/fast-analog",
+    element: <ProtectedRoute><FastAnalogPage /></ProtectedRoute>,
   },
   {
     path: "*",
