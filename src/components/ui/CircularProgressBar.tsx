@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 interface CircularProgressBarProps {
@@ -37,7 +37,29 @@ const CircularProgressBar: React.FC<CircularProgressBarProps> = ({
     }, [progress]);
 
     return (
-        <CircularProgressbar value={progress} text={`0:0${Math.round(progress / 100 * totalTime / 1000)}`} />
+        <CircularProgressbar value={progress} text={`0:0${Math.round(progress / 100 * totalTime / 1000)}`}
+            styles={buildStyles({
+                // Rotation of path and trail, in number of turns (0-1)
+                // rotation: 0.25,
+
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: 'butt',
+
+                // Text size
+                textSize: '16px',
+
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 1,
+
+                // Can specify path transition in more detail, or remove it entirely
+                // pathTransition: 'none',
+
+                // Colors
+                pathColor: `rgb(125, 10, 154)`,
+                textColor: 'rgb(125, 10, 154)',
+                trailColor: '#d6d6d6',
+                // backgroundColor: '#FF0000',
+            })} />
     );
 };
 

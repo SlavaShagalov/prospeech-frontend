@@ -12,6 +12,13 @@ const MAX_TIME = 10;
 const DEFAULT_TIME = 6;
 
 const prompts = [
+    "Игра в шахматы похожа на слона, потому что...",
+    "Садоводство похоже на воду, потому что...",
+    "Играть в видеоигры — все равно, что чесать спину, потому что…",
+    "Подниматься по лестнице - это как бензин, потому что...",
+    "Использование зубной нити похоже на путешествие, потому что...",
+    
+    "Подготовка к выпускным экзаменам похожа на езду на велосипеде, потому что...",
     "Езда на велосипеде похожа на публичное выступление, потому что...",
     "Подготовка к выпускным экзаменам похожа на езду на велосипеде, потому что...",
     "Органическая химия похожа на сафари, потому что...",
@@ -24,7 +31,6 @@ const FastAnalogPage = () => {
     const [time, setTime] = useState(DEFAULT_TIME);
     const [state, setState] = useState<"setup" | "started" | "finished">("setup");
     const [curIdx, setCurIdx] = useState(0);
-
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = parseInt(e.target.value);
@@ -41,7 +47,8 @@ const FastAnalogPage = () => {
         content = <div className="bg-white w-160 h-80 p-8 rounded-xl flex flex-col">
             <h1 className="mb-4 text-2xl text-center">Быстрая аналогия</h1>
             <div className="flex justify-between mb-4">
-                <p>Как выполнять</p>
+                <p></p>
+                {/* <p>Как выполнять</p> */}
                 <UploadBtn onClick={() => setState("started")}>Начать</UploadBtn>
             </div>
 
@@ -80,13 +87,15 @@ const FastAnalogPage = () => {
             }} />
         </div>
     } else if (state === "finished") {
-        content = <div className="bg-white w-160 h-96 p-8 rounded-xl flex flex-col">
-            <h1 className="mb-4 text-2xl text-center">Great!!!</h1>
-            <p>Your prompts:</p>
+        content = <div className="bg-white w-160 p-8 rounded-xl flex flex-col">
+            <h1 className="mb-4 text-purple-900 font-bold text-2xl text-center">Великолепно!</h1>
+            <p className="mb-2 font-medium">Ваши предложения:</p>
             {prompts.map((prompt, idx) => (
-                <div key={idx} className="w-full h-10 p-2 mb-2">
-                    {prompt}
-                </div>
+                idx < numPrompts
+                    ? <div key={idx} className="bg-gray-200 w-full p-2 mb-2 rounded-xl">
+                        {prompt}
+                    </div>
+                    : <></>
             ))}
         </div>
     }
