@@ -32,11 +32,11 @@ const columnHelper = createColumnHelper<Audio>()
 
 const columns = [
     columnHelper.accessor("title", {
-        header: () => "Title",
+        header: () => "Название",
         cell: info => info.getValue(),
     }),
     columnHelper.accessor("created_at", {
-        header: () => "Created",
+        header: () => "Создан",
         cell: info => {
             let date = new Date(info.getValue());
             const day = date.getDate();

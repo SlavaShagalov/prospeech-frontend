@@ -22,7 +22,7 @@ const audiosSlice = createSlice({
     builder
       .addCase(getAsync.pending, (state) => {
         state.status = "loading";
-        console.log("Pending audios");
+        console.log("Pending audios...");
       })
       .addCase(getAsync.fulfilled, (state, action: PayloadAction<Audio[]>) => {
         state.audios = action.payload;
@@ -32,16 +32,22 @@ const audiosSlice = createSlice({
       .addCase(getAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message!;
-        console.log("Audios failed");
+        console.log("Audios fetching failed");
       });
     builder
-      .addCase(addAsync.pending, () => {
-        console.log("Pending");
+      .addCase(addAsync.pending, (state) => {
+        state.status = "loading";
+        console.log("Audio creating...");
       })
       .addCase(addAsync.fulfilled, (state, action: PayloadAction<any>) => {
-        console.log("PAYLOAD", action.payload);
         state.audios = [...state.audios, action.payload];
-        console.log("Audio added");
+        state.status = "succeeded";
+        console.log("Audio created");
+      })
+      .addCase(addAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message!;
+        console.log("Audio creation failed");
       });
   },
 });

@@ -2,6 +2,10 @@ import React from "react";
 import { useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import UploadBtn from "./ui/buttons/UploadBtn";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../services/state/store";
+import { addAsync } from "../services/state/audios/audiosSlice";
+import { useNavigate } from "react-router-dom";
 
 const videoConstraints = {
     // aspectRatio: 0.6666666667,
@@ -23,6 +27,9 @@ const WebcamVideo: React.FC = () => {
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
+
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
 
     const handleStartCaptureClick = useCallback(() => {
         setCapturing(true);
@@ -59,30 +66,11 @@ const WebcamVideo: React.FC = () => {
             const blob = new Blob(recordedChunks, {
                 type: "video/mp4"
             });
-            const formData = new FormData();
-            formData.append("file", blob, "new_speech.mp4");
+            const file = new File([blob], 'new_speech.mp4', { type: "video/mp4" });
 
-            const requestOptions: RequestInit = {
-                method: "POST",
-                credentials: "include",
-                body: formData,
-            };
+            dispatch(addAsync(file));
 
-            try {
-                const response = await fetch(
-                    "/api/v1/audios",
-                    requestOptions
-                );
-                if (response.ok) {
-                    setRecordedChunks([]);
-                    const data = await response.json();
-                    return data;
-                } else {
-                    console.error("Failed to fetch audio list");
-                }
-            } catch (error) {
-                console.error("Error fetching audio list:", error);
-            }
+            navigate("/speeches");
         }
     }, [recordedChunks]);
 

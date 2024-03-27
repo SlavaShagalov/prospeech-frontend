@@ -32,9 +32,11 @@ interface WordInfo {
     end_times?: number[];
 }
 
+const delta = 0.2;
+
 function findCurrentWord(wordInfo: WordInfo, currentTime: number): number | null {
     for (let i = 0; i < wordInfo.words!.length; i++) {
-        if (currentTime >= wordInfo.start_times![i] && currentTime <= wordInfo.end_times![i]) {
+        if (wordInfo.start_times![i] - delta <= currentTime && currentTime <= wordInfo.end_times![i] + delta) {
             return i;
         }
     }
@@ -145,11 +147,20 @@ const SpeechPage = () => {
                             }} progressInterval={10} controls />
                         </div>
                         <div className="bg-gray-200 w-full p-5 rounded-2xl">
+                            <p>{audio?.text}</p>
+                        </div>
+                        <div className="bg-gray-200 w-full p-5 rounded-2xl">
                             <p>
                                 {audio?.words.map((word, idx) => (
                                     idx === curWordIdx
-                                        ? <span className="text-red-700">{word} </span>
-                                        : <span>{word} </span>
+                                        ?
+                                        <div className="bg-yellow-300 inline-block rounded">
+                                            <span className="text-red-700 mx-1">{word}</span>
+                                        </div>
+                                        :
+                                        <div className="inline-block">
+                                            <span className="mx-1">{word}</span>
+                                        </div>
                                 ))}
                             </p>
                         </div>
