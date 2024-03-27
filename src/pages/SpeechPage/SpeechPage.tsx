@@ -26,11 +26,37 @@ const months = [
     "декабря",
 ];
 
+interface WordInfo {
+    words?: string[];
+    start_times?: number[];
+    end_times?: number[];
+}
+
+function findCurrentWord(wordInfo: WordInfo, currentTime: number): number | null {
+    for (let i = 0; i < wordInfo.words!.length; i++) {
+        if (currentTime >= wordInfo.start_times![i] && currentTime <= wordInfo.end_times![i]) {
+            return i;
+        }
+    }
+    return null;
+}
+
 const SpeechPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const [curWordIdx, setCurWordIdx] = useState<number | null>(null);
     const audio = useSelector((state: RootState) => state.audio.audio);
+    // const wordsLen = audio?.words.length;
+
+
+
+    const wordsInfo: WordInfo = {
+        words: audio?.words,
+        start_times: audio?.start_times,
+        end_times: audio?.end_times,
+    }
+
 
     let formattedDate = "";
     if (audio) {
@@ -111,20 +137,25 @@ const SpeechPage = () => {
                     <div className="px-6 w-2/3 py-4 flex flex-col gap-4 items-center justify-center">
                         <div className="">
                             <ReactPlayer url={audio?.url} onProgress={(progress) => {
-                                console.log("loaded", progress.loaded);
-                                console.log("loadedSeconds", progress.loadedSeconds);
-                                console.log("played", progress.played);
                                 console.log("playedSeconds", progress.playedSeconds);
-                            }} controls />
+
+                                const currentWord = findCurrentWord(wordsInfo, progress.playedSeconds);
+                                setCurWordIdx(currentWord);
+
+                            }} progressInterval={10} controls />
                         </div>
                         <div className="bg-gray-200 w-full p-5 rounded-2xl">
-                            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet ac velit et posuere. Nullam in euismod leo, a efficitur nunc. Suspendisse in pulvinar lectus. Duis ultrices nulla at consectetur imperdiet. Nunc fermentum elit sit amet tellus tincidunt fermentum. Suspendisse potenti. Nulla convallis sed libero vel cursus. Suspendisse tincidunt ante ut ligula fermentum bibendum. Quisque sed ante ut lorem laoreet luctus sit amet sed mauris. Proin imperdiet vel ex non lacinia.
-                                Fusce eu consectetur quam. Nam nec feugiat mi. Ut tincidunt efficitur erat, in consequat nulla finibus id. Aliquam erat volutpat. Aenean cursus arcu elit, nec ornare neque sollicitudin quis. Ut tempus nunc vitae nisl placerat, lobortis vehicula tortor suscipit. Mauris tincidunt viverra odio, et pellentesque ante feugiat et. Maecenas blandit augue non auctor accumsan. Donec venenatis blandit quam, et laoreet tellus pharetra nec. Quisque pharetra molestie enim vel scelerisque. Curabitur sollicitudin ut nunc sed aliquet. Pellentesque leo urna, mattis non lectus a, pellentesque suscipit elit. Fusce finibus vitae erat ultrices pharetra.</p> */}
-                            <p>{audio?.text}</p>
+                            <p>
+                                {audio?.words.map((word, idx) => (
+                                    idx === curWordIdx
+                                        ? <span className="text-red-700">{word} </span>
+                                        : <span>{word} </span>
+                                ))}
+                            </p>
                         </div>
                     </div>
                     <div className="w-1/3">
-                        <RightSidebar></RightSidebar>
+                        <RightSidebar audio={audio}></RightSidebar>
                     </div>
                 </div>
             </div>

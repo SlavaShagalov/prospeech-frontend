@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 
+import Audio from "../../models/Audio";
 
-const RightSidebar = () => {
+
+const RightSidebar = ({audio}: {audio: Audio | null}) => {
     // const dispatch = useDispatch<AppDispatch>()
 
     return (
@@ -20,38 +22,14 @@ const RightSidebar = () => {
 
                 <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
                     <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
-                </div>
-
-
-                <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
-                    <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
-                </div>
-
-
-                <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
-                    <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
+                    <p>{audio?.words_per_min} слов/мин</p>
                 </div>
 
                 <p>💡 Что могло быть лучше</p>
                 
                 <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
-                    <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
-                </div>
-
-
-                <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
-                    <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
-                </div>
-
-
-                <div className="bg-gray-300 h-8 px-2 rounded-lg flex items-center justify-between">
-                    <p>Скорость речи</p>
-                    <p>56 слов/мин</p>
+                    <p>Другое</p>
+                    <p>Другое</p>
                 </div>
             </div>
         </div>
