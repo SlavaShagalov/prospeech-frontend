@@ -69,8 +69,6 @@ const WebcamVideo: React.FC = () => {
             const file = new File([blob], 'new_speech.mp4', { type: "video/mp4" });
 
             dispatch(addAsync(file));
-
-            navigate("/speeches");
         }
     }, [recordedChunks]);
 
